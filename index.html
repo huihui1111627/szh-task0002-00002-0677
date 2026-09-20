@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>近地轨道碰撞风险推演中心</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='30' fill='%234da3ff'/></svg>" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">🛰️</span>
+        <div>
+          <h1>近地轨道碰撞风险推演中心</h1>
+          <div class="subtitle">三维交会态势 · 变轨方案推演 · 多方案对比 · 节点续推</div>
+        </div>
+      </div>
+      <div class="top-tools">
+        <label class="tool-check"><input type="checkbox" id="toggle-orbits" checked> 轨道</label>
+        <label class="tool-check"><input type="checkbox" id="toggle-baseline" checked> 基线轨迹</label>
+        <label class="tool-check"><input type="checkbox" id="toggle-contacts" checked> 通信态势</label>
+        <button id="btn-reset-view" class="btn-outline">⏱ 归零</button>
+        <button id="btn-add-plan" class="btn-primary">+ 新方案</button>
+      </div>
+    </header>
+
+    <div id="checkpoint-bar" class="checkpoint-bar"></div>
+
+    <main class="layout">
+      <!-- 左栏：对象与交会 -->
+      <aside class="panel left-panel">
+        <section class="block">
+          <h2>空间目标</h2>
+          <div id="object-list" class="object-list"></div>
+        </section>
+        <section class="block grow">
+          <h2>预测交会点 / 风险时间窗</h2>
+          <div id="event-list" class="event-list scroll"></div>
+        </section>
+        <section class="block">
+          <h2>通信窗口（地面站）</h2>
+          <div id="contact-list" class="contact-list scroll"></div>
+        </section>
+      </aside>
+
+      <!-- 中央：三维视图 + 时间轴 -->
+      <section class="center">
+        <div id="viewport" class="viewport"></div>
+        <div class="timeline">
+          <div class="tl-row">
+            <button id="btn-play" class="btn-outline">▶ 播放</button>
+            <span class="clock" id="clock">0天 00:00</span>
+            <span class="tl-scale"><span>0h</span><span>24h</span><span>48h</span><span>72h</span></span>
+          </div>
+          <div id="timeline-track" class="timeline-track"></div>
+          <input type="range" id="timeline-slider" class="timeline-slider" />
+        </div>
+      </section>
+
+      <!-- 右栏：方案编辑 -->
+      <aside class="panel right-panel">
+        <section class="block grow">
+          <h2>变轨方案推演</h2>
+          <div id="plan-panel" class="plan-panel scroll"></div>
+        </section>
+      </aside>
+    </main>
+
+    <!-- 底部：多方案对比 -->
+    <section class="compare-dock">
+      <h2>多方案并排比较</h2>
+      <div id="compare-table"></div>
+    </section>
+  </div>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.js",
+        "three/addons/": "./vendor/"
+      }
+    }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
